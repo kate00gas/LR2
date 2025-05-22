@@ -46,7 +46,7 @@ app = FastAPI(
 # В продакшене укажите конкретные домены вашего фронтенда.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Или ["http://localhost:3000", "https://your-frontend.com"]
+    allow_origins=["http://localhost:8001", "http://localhost"],
     allow_credentials=True,
     allow_methods=["*"], # Разрешаем все методы (GET, POST, PUT, DELETE, etc.)
     allow_headers=["*"], # Разрешаем все заголовки
