@@ -5,6 +5,7 @@ import uuid
 from decimal import Decimal
 from .restaurant import Restaurant, MenuItem
 from app.models.order import OrderStatusEnum # Импортируем Enum статусов
+from datetime import datetime
 
 # --- Minimal Restaurant Schema for Orders ---
 class RestaurantBase(BaseModel):
@@ -50,6 +51,8 @@ class Order(OrderBase):
     user_id: uuid.UUID # Добавляем ID пользователя
     status: OrderStatusEnum
     total_amount: Decimal
+    created_at: datetime
+    updated_at: datetime
     items: List[OrderItem] = [] # Включаем элементы заказа
     restaurant: Optional[RestaurantBase] = None
 

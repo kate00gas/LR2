@@ -156,34 +156,34 @@ CREATE INDEX idx_order_items_item_id ON order_items(item_id);
 -- Вставляем тестовые данные
 -- Рестораны
 INSERT INTO restaurants (name, description, address, phone_number, email, latitude, longitude, is_active) VALUES
-('Pizza Palace', 'Best pizza in town', '123 Main St, Food City', '555-1111', 'contact@pizzapalace.com', 40.7128, -74.0060, true),
-('Sushi Spot', 'Fresh and delicious sushi', '456 Side Ave, Food City', '555-2222', 'info@sushispot.com', 40.7135, -74.0075, true),
-('Burger Bonanza', 'Juicy burgers and fries', '789 Burger Blvd, Food City', '555-3333', 'eat@burgerbonanza.com', 40.7110, -74.0050, true),
-('Taco Haven', 'Authentic Mexican tacos', '101 Taco Rd, Food City', '555-4444', 'taco@haven.com', 40.7100, -74.0040, false);
+('Pizza Palace', 'Лучшая пицца в городе', 'ул. Центральная, 12', '8-900-555-11-11', 'contact@pizzapalace.com', 40.7128, -74.0060, true),
+('Sushi Spot', 'Свежие и вкусные суши', 'пр-т Боковой, 45', '8-900-555-22-22', 'info@sushispot.com', 40.7135, -74.0075, true),
+('Burger Bonanza', 'Сочные бургеры и картофель фри', 'просп. Бургеров, 78', '8-900-555-33-33', 'eat@burgerbonanza.com', 40.7110, -74.0050, true),
+('Taco Haven', 'Аутентичные мексиканские тако', 'ул. Тако, 101,', '8-900-555-44-44', 'taco@haven.com', 40.7100, -74.0040, false);
 
 -- Меню для Pizza Palace
 INSERT INTO menu_items (restaurant_id, name, description, price, category, is_available)
-SELECT restaurant_id, 'Margherita', 'Classic cheese and tomato pizza', 12.99, 'Pizza', true FROM restaurants WHERE name = 'Pizza Palace'
+SELECT restaurant_id, 'Маргарита', 'Классическая пицца с сыром и томатами', 590, 'Пицца', true FROM restaurants WHERE name = 'Pizza Palace'
 UNION ALL
-SELECT restaurant_id, 'Pepperoni', 'Pizza with pepperoni slices', 14.50, 'Pizza', true FROM restaurants WHERE name = 'Pizza Palace'
+SELECT restaurant_id, 'Пепперони', 'Пицца с ломтиками пепперони', 670, 'Пицца', true FROM restaurants WHERE name = 'Pizza Palace'
 UNION ALL
-SELECT restaurant_id, 'Caesar Salad', 'Fresh romaine lettuce with Caesar dressing', 8.00, 'Salad', true FROM restaurants WHERE name = 'Pizza Palace';
+SELECT restaurant_id, 'Салат Цезарь', 'Свежий салат романо с соусом цезарь', 340, 'Салаты', true FROM restaurants WHERE name = 'Pizza Palace';
 
 -- Меню для Sushi Spot
 INSERT INTO menu_items (restaurant_id, name, description, price, category, is_available)
-SELECT restaurant_id, 'California Roll', 'Crab, avocado, cucumber', 9.50, 'Rolls', true FROM restaurants WHERE name = 'Sushi Spot'
+SELECT restaurant_id, 'Калифорния ролл', 'Краб, авокадо, огурец', 430, 'Роллы', true FROM restaurants WHERE name = 'Sushi Spot'
 UNION ALL
-SELECT restaurant_id, 'Salmon Nigiri', 'Slice of salmon over rice (2 pcs)', 6.00, 'Nigiri', true FROM restaurants WHERE name = 'Sushi Spot'
+SELECT restaurant_id, 'Сяке нигири', 'Ломтик лосося на рисе (2 шт.)', 270, 'Нигири', true FROM restaurants WHERE name = 'Sushi Spot'
 UNION ALL
-SELECT restaurant_id, 'Miso Soup', 'Traditional Japanese soup', 3.50, 'Soup', false FROM restaurants WHERE name = 'Sushi Spot';
+SELECT restaurant_id, 'Мисо суп', 'Традиционный японский суп', 170, 'Супы', false FROM restaurants WHERE name = 'Sushi Spot';
 
 -- Меню для Burger Bonanza
 INSERT INTO menu_items (restaurant_id, name, description, price, category, is_available)
-SELECT restaurant_id, 'Classic Burger', 'Beef patty, lettuce, tomato, onion', 10.99, 'Burgers', true FROM restaurants WHERE name = 'Burger Bonanza'
+SELECT restaurant_id, 'Классический бургер', 'Говяжья котлета, салат, помидор, лук', 520, 'Бургеры', true FROM restaurants WHERE name = 'Burger Bonanza'
 UNION ALL
-SELECT restaurant_id, 'Cheese Burger', 'Classic burger with cheese', 11.99, 'Burgers', true FROM restaurants WHERE name = 'Burger Bonanza'
+SELECT restaurant_id, 'Чизбургер', 'Классический бургер с сыром', 570, 'Бургеры', true FROM restaurants WHERE name = 'Burger Bonanza'
 UNION ALL
-SELECT restaurant_id, 'Fries', 'Crispy potato fries', 4.50, 'Sides', true FROM restaurants WHERE name = 'Burger Bonanza';
+SELECT restaurant_id, 'Картофель фри', 'Хрустящий картофель фри', 210, 'Гарниры', true FROM restaurants WHERE name = 'Burger Bonanza';
 
 -- Тестовый заказ
 DO $$

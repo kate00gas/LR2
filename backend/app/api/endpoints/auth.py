@@ -6,7 +6,7 @@ from app.schemas.user import User, UserCreate, Token
 from app.crud.crud_user import get_user_by_username, create_user, verify_password
 from app.db.session import get_db
 from app.core.config import settings
-from app.api.dependencies import create_access_token, get_current_user
+from app.api.dependencies import create_access_token
 from passlib.context import CryptContext
 
 router = APIRouter(tags=["Auth"])
@@ -22,7 +22,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         )
     access_token_expires = timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user.username}, expires_delta=access_token_expires
+        data={"sub": user.username, "role": user.role},
+        expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
 
@@ -34,7 +35,3 @@ async def create_new_user(user_in: UserCreate, db: AsyncSession = Depends(get_db
     if user_in.role != "user":
         raise HTTPException(status_code=400, detail="Only 'user' role is allowed for registration")
     return await create_user(db, user_in)
-
-@router.get("/me", response_model=User)
-async def get_current_user_data(current_user: User = Depends(get_current_user)):
-    return current_user

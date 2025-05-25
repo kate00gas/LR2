@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 import uuid
 from decimal import Decimal
+from datetime import datetime
 
 class MenuItemBase(BaseModel):
     name: str = Field(..., min_length=1, max_length=255)
@@ -16,6 +17,8 @@ class MenuItemCreate(MenuItemBase):
 class MenuItem(MenuItemBase):
     item_id: uuid.UUID
     restaurant_id: uuid.UUID
+    created_at: datetime
+    updated_at: datetime
 
     class Config:
         from_attributes = True
@@ -29,6 +32,8 @@ class RestaurantBase(BaseModel):
     is_active: bool = False
     latitude: Optional[float] = None
     longitude: Optional[float] = None
+    created_at: datetime
+    updated_at: datetime
 
 class RestaurantCreate(RestaurantBase):
     pass

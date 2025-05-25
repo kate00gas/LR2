@@ -50,4 +50,3 @@ async def create_user(db: AsyncSession, user_in: UserCreate) -> User:
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
-
